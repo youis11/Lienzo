@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    private float moveLimiter = 0.7f;
+
     private Rigidbody2D rb;
     Vector2 movement;
 
@@ -25,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Movement
+        if(movement.x != 0 && movement.y !=0)
+        {
+            movement.x *= moveLimiter;
+            movement.y *= moveLimiter;
+        }
+
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 }

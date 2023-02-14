@@ -22,6 +22,7 @@ public class ZombieSpawner : MonoBehaviour
         float width = cam.orthographicSize * cam.aspect + 1;
         if (enemiesAmount == 0)
         {
+            //NEW WAVE SOUND
             waveNumber = waveNumber + 1;
             for (int i = 0; i < waveNumber; i++)
             {

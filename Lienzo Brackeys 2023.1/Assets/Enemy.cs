@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         //animator = GetComponent<Animator>();
-        GameObject manager = GameObject.FindWithTag("Manager");
+        GameObject manager = GameObject.FindWithTag("GameController");
 
         if (manager != null)
         {
@@ -36,8 +36,9 @@ public class Enemy : MonoBehaviour
     {
         //play death animation
         //INSTANTIATE RANDOM PLANT
+        spawner.enemiesAmount = spawner.enemiesAmount - 1;
         Destroy(gameObject);
-        spawner.enemiesAmount--;
+  
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,12 +47,12 @@ public class Enemy : MonoBehaviour
         if (player != null)
         {
             player.PlayerTakeDamage(damage);
-        }
+            //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            //Destroy(effect, 5f);
 
-        //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        //Destroy(effect, 5f);
-        
-        //ENEMIGOS KAMIKAZE
-        Destroy(gameObject);
+            //ENEMIGOS KAMIKAZE
+            spawner.enemiesAmount = spawner.enemiesAmount - 1;
+            Destroy(gameObject);
+        }
     }
 }

@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 1624117590}
   - component: {fileID: 1624117589}
   - component: {fileID: 1624117593}
+  - component: {fileID: 1624117594}
   m_Layer: 0
   m_Name: PlayerSquare
   m_TagString: Untagged
@@ -453,7 +454,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 933550936, guid: 81153a72ed0bcea439741af9c6a5dc44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -496,6 +497,26 @@ MonoBehaviour:
   attackSpeed: 0.5
   coolDown: 0
   bulletSpeed: 20
+--- !u!95 &1624117594
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624117588}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 663af83bba4c8094d8884f4a27dab729, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1903254034
 GameObject:
   m_ObjectHideFlags: 0

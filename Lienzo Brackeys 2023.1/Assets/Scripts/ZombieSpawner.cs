@@ -26,7 +26,7 @@ public class ZombieSpawner : MonoBehaviour
             waveNumber = waveNumber + 1;
             for (int i = 0; i < waveNumber; i++)
             {
-                Instantiate(zombie, new Vector3(cam.transform.position.x + Random.Range(-width, width), 3, cam.transform.position.z + height + Random.Range(10, 30)), Quaternion.identity);
+                Instantiate(zombie, new Vector3(cam.transform.position.x + Random.Range(-width, width), Random.Range(-height,height), 0), Quaternion.identity);
                 enemiesAmount = enemiesAmount + 1;
             }
         }

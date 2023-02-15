@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public int damage = 40;
 
     private ZombieSpawner spawner;
-    //private Animator animator;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
         {
             spawner = manager.GetComponent<ZombieSpawner>();
         }
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,9 +37,10 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //play death animation
+        animator.SetBool("Die", true);
         //INSTANTIATE RANDOM PLANT
         spawner.enemiesAmount = spawner.enemiesAmount - 1;
-        Destroy(gameObject);
+        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
   
     }
 
@@ -52,7 +55,8 @@ public class Enemy : MonoBehaviour
 
             //ENEMIGOS KAMIKAZE
             spawner.enemiesAmount = spawner.enemiesAmount - 1;
-            Destroy(gameObject);
+            animator.SetBool("Explosion", true);
+            Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
 }

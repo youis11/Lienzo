@@ -11,6 +11,7 @@ public class Walkable : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private Vector2 direction;
     private Transform target;
+    private Animator animator;
 
     private void Start()
     {
@@ -21,11 +22,16 @@ public class Walkable : MonoBehaviour
         {
             target = player.GetComponent<Transform>();
         }
+
+        animator = GetComponent<Animator>();
     }
 
     public void MoveTo(Vector2 direction)
     {
         this.direction = direction;
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     public void Stop()

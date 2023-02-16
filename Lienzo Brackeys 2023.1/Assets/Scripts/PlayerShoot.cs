@@ -5,15 +5,14 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public float attackSpeed = 0.5f;
+
+    public float attackSpeed = 1.0f;
     public float coolDown;
-    public float bulletSpeed = 20f;
+    public float bulletSpeed = 500f;
 
-    //public Transform shootPoint;
+    private Vector3 mousePos;
 
-    //TO DO: get it from player movement
-    private float moveLimiter = 0.7f;
-    Vector2 movement;
+    public GameObject muscleEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -32,27 +31,29 @@ public class PlayerShoot : MonoBehaviour
             }
         }
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z - transform.position.z));
+        
     }
 
     void Shoot()
     {
-        if (movement.x != 0 && movement.y != 0)
-        {
-            movement.x *= moveLimiter;
-            movement.y *= moveLimiter;
-        }
+        //GameObject effect = Instantiate(muscleEffect, transform.position, Quaternion.identity);
+        //Animator an = effect.GetComponent<Animator>();
+        //an.Play("musel effect");
+
+        //Destroy(effect, 5f);
 
         GameObject bPrefab = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
+        Vector3 dir = mousePos - transform.position;
+
         Rigidbody2D rb = bPrefab.GetComponent<Rigidbody2D>();
 
-        float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
         rb.SetRotation(angle);
 
-        rb.AddForce(movement * bulletSpeed, ForceMode2D.Impulse);
-        
+        rb.AddForce(dir.normalized * bulletSpeed, ForceMode2D.Impulse);
+
         coolDown = Time.time + attackSpeed;
     }
 }
